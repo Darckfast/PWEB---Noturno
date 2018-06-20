@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<link rel="stylesheet" href="../css/style.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastrar Participante</title>
+</h:head>
+
+<h:body>
+	<h1>Cadastro de Participante</h1>
+	<h:form id="cadastro">
+		
+		<h:messages />
+		<h:inputHidden value="#{participanteBean.participante.id}" />
+		<h:outputLabel value="Evento:" for="Evento" />
+		<h:selectOneMenu id="codigo" style="width:210px"
+			value="#{participanteBean.participante.codigoEvento}" required="true"
+			requiredMessage="Evento deve ser selecionado">
+			<f:selectItem itemLabel=" - Selecione uma opção - " itemValue="" />
+			<f:selectItems value="#{eventoBean.eventos}"/>
+		 </h:selectOneMenu>
+		<br style="clear: left;" />
+		<br />
+			<div>
+			<h:outputLabel value="Nome"/>
+			<h:inputText id="nome" value="#{participanteBean.participante.nome}" size="50" maxlength="50"
+				required="true" requiredMessage="Você não tem nome?">
+				<f:validateLength minimum="10" maximum="50" />
+			</h:inputText>
+			</div>
+			
+			<div>
+			<h:outputLabel value="Nascimento:"/>
+			<h:inputText id="data" value="#{participanteBean.participante.nascimento}" size="10" maxlength="10"
+				required="true">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+			</div>
+			
+			<div>
+			<h:outputLabel value="Empresa:"/>
+			<h:inputText id="empresa" value="#{participanteBean.participante.empresa}" size="50" maxlength="50"
+				required="true" requiredMessage="Você não tem empresa?">
+				<f:validateLength minimum="10" maximum="50" />
+			</h:inputText>
+			</div>
+			
+			<div>
+			<h:outputLabel value="e-Mail:"/>
+				<h:inputText id="email"	value="#{participanteBean.participante.email}" size="50" maxlength="100"
+					required="true" validatorMessage="E-Mail Inválido">
+					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+
+			</h:inputText>
+			</div>
+			
+			<div>
+			<h:outputLabel value="CPF:"/>
+			<h:inputText id="cpf" value="#{participanteBean.participante.cpf}" size="15" maxlength="15"
+				required="true" requiredMessage="Insira um CPF">
+				<f:validateLength minimum="1" maximum="15" />
+			</h:inputText>
+			</div>
+			
+			<div>	
+			<h:commandButton value="Salvar" action="#{participanteBean.salvar}"  id="Salvar" />
+			<h:button value="Voltar" outcome="/index.xhtml" />
+			</div>
+		<br/> 
+	</h:form>
+</h:body>
+</html>

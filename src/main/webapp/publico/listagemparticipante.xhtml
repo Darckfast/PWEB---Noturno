@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css"/>
+	<link rel="stylesheet" href="../css/style.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Participantes</title>
+</h:head>
+
+<h:body>
+	<h1>Participantes</h1>
+
+	<h:form id="listagem">
+		<h:dataTable value="#{participanteBean.listaParticipantes}" var="item"
+			emptyMessage="Nenhum Registro Encontrado" paginator="true" rows="10"
+			aginatorPosition="bottom" selectionMode="single"
+			selection="#{participanteBean.participante}"
+			class="ui celled table">
+			
+			<div>
+			<p:column  sortBy="#{item.nome}">
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			</div>
+			<div>
+			<p:column sortBy="#{item.email}">
+				<f:facet name="header">
+					<h:outputText value="E-mail" />
+				</f:facet>
+				<h:outputText value="#{item.email}" />
+			</p:column>
+			</div>
+			<div>
+			<p:column sortBy="#{item.empresa}">
+				<f:facet name="header">
+					<h:outputText value="Empresa" />
+				</f:facet>
+				<h:outputText value="#{item.empresa}" />
+			</p:column>
+			</div>
+			<div>
+			<p:column sortBy="#{item.nome}">
+				<f:facet name="header">
+					<h:outputText value="Evento do Participante" />
+				</f:facet>
+				<h:outputText value="#{item.evento.nome}" />
+			</p:column>
+			</div>
+			<div>
+			<p:column sortBy="#{item.codigoEvento}">
+			<f:facet name="header">
+					<h:outputText value="Codigo do evento" />
+				</f:facet>
+				<h:outputText value="#{item.codigoEvento}" />
+			</p:column>
+			</div>
+		</h:dataTable>
+		<div align="right">
+		<h:button value="Voltar" outcome="/index.xhtml" />
+		</div>
+	</h:form>
+</h:body>
+</html>
